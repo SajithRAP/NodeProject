@@ -1,8 +1,16 @@
 const express = require('express');
 const app = express();
+// Mongoose connection
 const mongoose = require('mongoose');
-require('dotenv/config');
+const cors = require('cors');
+require('dotenv').config();
 
+// Cross domain fectching. Cors will give access
+app.use(cors());
+
+// Body parser is required to convert data into appropriate form or it will be undefined
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 // import routes
 const postRoute = require('./routes/posts');
@@ -13,18 +21,34 @@ const postRoute = require('./routes/posts');
 //     console.log('Some logic to run');
 // })
 app.use('/posts', postRoute);
-    
+
 
 // routes
 app.get('/', (req, res) => {
     res.send('we are on home');
 });
-
+app.get('/data', (req, res) => {
+    res.send('we are on dta');
+});
 
 // connect mongoose
-mongoose.connect('process.env.DB_connection', { useNewUrlParser: true, useUnifiedTopology: true } , () => {
-    console.log('connected to db');
-})
+// mongoose.connect('process.env.DB_connection', { useNewUrlParser: true }, () => {
+//     console.log('connected to db');
+// })
+
+mongoose.connect('mongodb+srv://Sajith:2QS9OEYRal8ZfF9v@nodeapidb-hrmwq.mongodb.net/Sample?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 //listen
 app.listen(3000);
+
+
+
+
+// fetch data 
+// fetch('http://localhost:3000/posts')
+//   .then(result => {
+//     return result.json()
+//   })
+//   .then(data => {
+//     console.log(data);
+//   })
