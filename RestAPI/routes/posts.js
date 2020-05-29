@@ -8,7 +8,7 @@ const Post = require('../Models/Post');
 //     res.send('We are on post page');
 // })
 
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
     
     try {
         //get all the posts from the DB

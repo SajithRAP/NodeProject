@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// Mongoose connection
+// Mongoose - mongodb connection
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
@@ -8,7 +8,7 @@ require('dotenv').config();
 // Cross domain fectching. Cors will give access
 app.use(cors());
 
-// Body parser is required to convert data into appropriate form or it will be undefined
+// Body parser is required to convert data into appropriate format or it will be undefined
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
@@ -25,10 +25,16 @@ app.use('/posts', postRoute);
 
 // routes
 app.get('/', (req, res) => {
-    res.send('we are on home');
+    res.send(`
+        we are on home
+        <br/>
+        Navigate to /posts and /data routes
+        <br/>
+        /posts/id
+    `);
 });
 app.get('/data', (req, res) => {
-    res.send('we are on dta');
+    res.send('we are on data');
 });
 
 // connect mongoose
