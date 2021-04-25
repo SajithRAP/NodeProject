@@ -43,8 +43,7 @@ app.get('/data', (req, res) => {
 // })
 
 // mongoose.connect('process.env.DB_connection')
-mongoose.connect('mongodb+srv://Sajith:2QS9OEYRal8ZfF9v@nodeapidb-hrmwq.mongodb.net/Sample?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.createConnection(process.env.DB_connection, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.createConnection(process.env.DB_connection, { useNewUrlParser: true, useUnifiedTopology: true })
 
 //listen
 app.listen(3000);
